@@ -4,6 +4,7 @@ import Image from "next/image";
 import { APP_NAME } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import ModeToggle from "@/components/shared/header/mode-toggle";
+import Menu from "@/components/shared/header/menu";
 
 const Header = () => {
   return (
@@ -23,29 +24,7 @@ const Header = () => {
             </span>
           </Link>
         </div>
-        <div className={"space-x-2"}>
-          <Button
-            variant={"ghost"}
-            className={
-              "hover:bg-hoverRuby hover:text-white hover:cursor-pointer dark:hover:bg-hoverRuby"
-            }
-          >
-            <Link href={"/cart"} className={"flex-center space-x-1"}>
-              <ShoppingCart /> <span>Cart</span>
-            </Link>
-          </Button>
-
-          <Button
-            variant={"default"}
-            className={
-              "bg-ruby hover:bg-hoverRuby hover:text-black dark:hover:text-white hover:cursor-pointer"
-            }
-          >
-            <Link href={"/sign-in"} className={"flex-center space-x-1"}>
-              <UserIcon /> <span>Sign In</span>
-            </Link>
-          </Button>
-        </div>
+        <Menu />
       </div>
     </header>
   );
