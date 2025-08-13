@@ -1,15 +1,17 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import sampleData from "../../../db/sample-data";
 import ProductsList from "@/components/shared/products/products-list";
+import { getLatestProducts } from "@/lib/actions/product.actions";
+import { convertToPlainObject } from "@/lib/utils";
+import { LATEST_PRODUCTS_LIMIT } from "@/lib/constants";
 
-export default function Home() {
+export default async function Home() {
+  const latestData = await getLatestProducts();
+
   return (
     <>
       <ProductsList
-        data={sampleData.products}
+        data={convertToPlainObject(latestData)}
         title={"Newest Arrivals"}
-        limit={4}
+        limit={LATEST_PRODUCTS_LIMIT}
       />
     </>
   );
