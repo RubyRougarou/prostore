@@ -12,3 +12,10 @@ export async function getLatestProducts() {
 
   return data;
 }
+
+// Get a single product by its slug(an attribute in database)
+export async function getProductBySlug(slug: string) {
+  return await prisma.product.findFirst({
+    where: { slug: slug },
+  });
+}
