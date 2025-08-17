@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import productCard from "@/components/shared/products/product-card";
 
 const ProductPrice = ({
   value,
