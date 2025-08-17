@@ -6,7 +6,7 @@ import { Product } from "../../../../types";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <Card className={"w-full max-w-sm shadow-ruby"}>
+    <Card className={"w-full max-w-sm shadow-ruby dark:shadow-lg pt-0"}>
       <CardHeader className={`p-0 `}>
         <Link href={`/product/${product.slug}`}>
           <Image
@@ -15,6 +15,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             height={300}
             width={300}
             priority={true}
+            className={"rounded-xl"}
           />
         </Link>
       </CardHeader>
