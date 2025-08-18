@@ -15,7 +15,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             height={300}
             width={300}
             priority={true}
-            className={"rounded-xl"}
+            className={"rounded-xl w-full"}
           />
         </Link>
       </CardHeader>
