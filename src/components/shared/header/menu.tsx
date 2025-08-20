@@ -27,18 +27,7 @@ const Menu = () => {
             <ShoppingCart /> <span>Cart</span>
           </Link>
         </Button>
-        {/*
-        <Button
-          variant={"default"}
-          className={
-            "bg-ruby hover:bg-hoverRuby hover:text-black dark:hover:text-white hover:cursor-pointer"
-          }
-        >
-          <Link href={"/sign-in"} className={"flex-center space-x-1"}>
-            <UserIcon /> <span>Sign In</span>
-          </Link>
-        </Button>
-        */}
+
         <UserButton />
       </nav>
       <nav className={"md:hidden"}>
@@ -60,18 +49,6 @@ const Menu = () => {
               </Link>
             </Button>
 
-            {/*
-            <Button
-              variant={"default"}
-              className={
-                "bg-ruby hover:bg-hoverRuby hover:text-black dark:hover:text-white hover:cursor-pointer"
-              }
-            >
-              <Link href={"/sign-in"} className={"flex-center space-x-1"}>
-                <UserIcon /> <span>Sign In</span>
-              </Link>
-            </Button>
-            */}
             <UserButton />
             <SheetDescription></SheetDescription>
           </SheetContent>
