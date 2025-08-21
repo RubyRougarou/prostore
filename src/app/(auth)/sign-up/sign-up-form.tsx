@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { redirect, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useFormStatus } from "react-dom";
 
 import { signUpUser } from "@/lib/actions/user.actions";
@@ -31,8 +31,6 @@ const SignUpForm = () => {
   const [confirmPassword] = data?.messages!?.filter(
     (message: any) => message.source === "confirmPassword",
   );
-
-  console.log("********", name);
 
   const SignUpButton = () => {
     const { pending } = useFormStatus();

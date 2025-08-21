@@ -66,24 +66,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    // async session({ session, user, trigger, token }: any) {
-    //   if (token) {
-    //     // Set the user ID from the token
-    //     session.user.id = token.sub;
-    //
-    //     // If there is an update, set the user's name
-    //     session.user.name = user.name;
-    //   }
-    //
-    //   return session;
-    // },
-    // async jwt({ token, user, account, profile }) {
-    //   if (user) {
-    //     token.id = user.id;
-    //   }
-    //   return token;
-    // },
-
     ...authConfig.callbacks,
     async session({ session, user, trigger, token }: any) {
       // Set the user ID from the token
@@ -101,52 +83,71 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user, trigger, session }: any) {
       // Assign user fields to token
       if (user) {
-        token.id = user.id;
-        // token.role = user.role;
+        token.role = user.role;
 
-        // If user has no name then use the email
+        // If user has no name, then use email
         if (user.name === "NO_NAME") {
-          token.name = user.email!.split("@")[0];
+          token.name = user.name.split("@")[0];
 
-          // Update database to reflect the token name
+          // Update the database to reflect the token name
           await prisma.user.update({
             where: { id: user.id },
             data: { name: token.name },
           });
         }
-
-        //   if (trigger === 'signIn' || trigger === 'signUp') {
-        //     const cookiesObject = await cookies();
-        //     const sessionCartId = cookiesObject.get('sessionCartId')?.value;
-        //
-        //     if (sessionCartId) {
-        //       const sessionCart = await prisma.cart.findFirst({
-        //         where: { sessionCartId },
-        //       });
-        //
-        //       if (sessionCart) {
-        //         // Delete current user cart
-        //         await prisma.cart.deleteMany({
-        //           where: { userId: user.id },
-        //         });
-        //
-        //         // Assign new cart
-        //         await prisma.cart.update({
-        //           where: { id: sessionCart.id },
-        //           data: { userId: user.id },
-        //         });
-        //       }
-        //     }
-        //   }
-        // }
-
-        // Handle session updates
-        if (session?.user.name && trigger === "update") {
-          token.name = session.user.name;
-        }
-
-        return token;
       }
+      return token;
     },
+
+    // async jwt({ token, user, trigger, session }: any) {
+    //   // Assign user fields to token
+    //   if (user) {
+    //     token.id = user.id;
+    //     // token.role = user.role;
+    //
+    //     // If user has no name then use the email
+    //     if (user.name === "NO_NAME") {
+    //       token.name = user.email!.split("@")[0];
+    //
+    //       // Update database to reflect the token name
+    //       await prisma.user.update({
+    //         where: { id: user.id },
+    //         data: { name: token.name },
+    //       });
+    //     }
+    //
+    //     //   if (trigger === 'signIn' || trigger === 'signUp') {
+    //     //     const cookiesObject = await cookies();
+    //     //     const sessionCartId = cookiesObject.get('sessionCartId')?.value;
+    //     //
+    //     //     if (sessionCartId) {
+    //     //       const sessionCart = await prisma.cart.findFirst({
+    //     //         where: { sessionCartId },
+    //     //       });
+    //     //
+    //     //       if (sessionCart) {
+    //     //         // Delete current user cart
+    //     //         await prisma.cart.deleteMany({
+    //     //           where: { userId: user.id },
+    //     //         });
+    //     //
+    //     //         // Assign new cart
+    //     //         await prisma.cart.update({
+    //     //           where: { id: sessionCart.id },
+    //     //           data: { userId: user.id },
+    //     //         });
+    //     //       }
+    //     //     }
+    //     //   }
+    //     // }
+    //
+    //     // Handle session updates
+    //     if (session?.user.name && trigger === "update") {
+    //       token.name = session.user.name;
+    //     }
+    //
+    //     return token;
+    //   }
+    // },
   },
 });
