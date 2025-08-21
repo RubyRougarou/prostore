@@ -14,7 +14,7 @@ import { useSearchParams } from "next/navigation";
 const CredentialsSignInForm = () => {
   const [data, action] = useActionState(signInWithCredentials, {
     success: false,
-    message: "",
+    messages: [],
   });
 
   const searchParams = useSearchParams();
@@ -40,10 +40,15 @@ const CredentialsSignInForm = () => {
       {data && !data.success && (
         <div
           className={
-            "text-destructive text-center bg-gray-400 my-1.5 mx-24 rounded-full"
+            "text-lightRuby text-center bg-gray-300 my-1.5 mx-20 md:mx-16 rounded-full text-lg"
           }
         >
-          {data.message}
+          {data.messages![0]}
+          {/*<h2 className={"font-bold"}>Errors:</h2>*/}
+          {/*{data.messages &&*/}
+          {/*  data?.messages?.map((message, index) => (*/}
+          {/*    <p key={index}>{message && ""}</p>*/}
+          {/*  ))}*/}
         </div>
       )}
       <div className="space-y-6">
@@ -55,6 +60,11 @@ const CredentialsSignInForm = () => {
             type={"email"}
             autoComplete={"email"}
             required={true}
+            onInvalid={(e) =>
+              (e.target as HTMLInputElement).setCustomValidity(
+                "Enter a valid email address",
+              )
+            }
             className={
               "focus-visible:ring-hoverRuby focus-visible:border-none mt-1.5"
             }
@@ -74,12 +84,6 @@ const CredentialsSignInForm = () => {
           />
         </div>
         <div>
-          {/*<Button*/}
-          {/*  className={"w-full bg-ruby hover:bg-hoverRuby"}*/}
-          {/*  variant={"default"}*/}
-          {/*>*/}
-          {/*  Sing in*/}
-          {/*</Button>*/}
           <SignInButton />
         </div>
         <div className="text-sm text-center text-muted-foreground">
