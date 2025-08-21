@@ -32,6 +32,8 @@ const SignUpForm = () => {
     (message: any) => message.source === "confirmPassword",
   );
 
+  console.log("********", name);
+
   const SignUpButton = () => {
     const { pending } = useFormStatus();
 
@@ -49,7 +51,7 @@ const SignUpForm = () => {
   return (
     <form action={action}>
       <input type="hidden" name="callbackUrl" value={callbackUrl} />
-      {data && !data.success && (
+      {data && !data.success && typeof data.messages !== "object" && (
         <div
           className={
             "text-lightRuby text-center bg-gray-300 my-1.5 mx-20 md:mx-16 rounded-full text-lg"
