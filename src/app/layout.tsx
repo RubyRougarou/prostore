@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../assets/styles/globals.css";
+
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
+
+import "../assets/styles/globals.css";
 
 import { APP_NAME, APP_DESCRIPTION, SERVER_URL } from "@/lib/constants";
 
@@ -33,6 +36,11 @@ export default function RootLayout({
           disableTransitionOnChange={true}
         >
           {children}
+          <Toaster
+            position={"top-center"}
+            closeButton={true}
+            richColors={true}
+          />
         </ThemeProvider>
       </body>
     </html>

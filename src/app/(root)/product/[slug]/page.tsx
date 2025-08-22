@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ProductImages from "@/components/shared/products/product-images";
+import AddToCart from "@/components/shared/products/add-to-cart";
 
 const ProductDetailsPage = async ({
   params,
@@ -60,7 +61,7 @@ const ProductDetailsPage = async ({
                   <ProductPrice value={+product.price} />
                 </div>
               </div>
-              <div className="mb-2 flex justify-between">
+              <div className="mb-4 flex justify-between">
                 <div>Status</div>
                 {product.stock > 0 ? (
                   <Badge variant={"outline"} className={"border-hoverRuby"}>
@@ -72,11 +73,16 @@ const ProductDetailsPage = async ({
               </div>
               {product.stock > 0 && (
                 <div className={"flex-center"}>
-                  <Button
-                    className={"w-full bg-ruby text-white hover:bg-hoverRuby"}
-                  >
-                    Add to Cart
-                  </Button>
+                  <AddToCart
+                    item={{
+                      productId: product.id,
+                      name: product.name,
+                      slug: product.slug,
+                      price: product.price,
+                      qty: 1,
+                      image: product.images![0],
+                    }}
+                  />
                 </div>
               )}
             </CardContent>

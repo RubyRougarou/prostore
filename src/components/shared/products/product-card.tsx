@@ -22,7 +22,9 @@ const ProductCard = ({ product }: { product: Product }) => {
       <CardContent className={`px-4 grid gap-3`}>
         <div className="text-sm">{product.brand}</div>
         <Link href={`/product/${product.slug}`}>
-          <h2 className="text-sm font-medium">{product.name}</h2>
+          <h2 className="text-sm font-medium">
+            {product.name.split(product.brand)}
+          </h2>
         </Link>
         <div className="flex-between gap-3">
           <p>{product.rating} Stars</p>
