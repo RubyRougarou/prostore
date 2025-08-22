@@ -11,7 +11,7 @@ import { formatError } from "@/lib/utils";
 
 // Sign in user with credentials
 export async function signInWithCredentials(
-  prevState: string,
+  prevState: unknown,
   formData: FormData,
 ) {
   try {
@@ -38,7 +38,7 @@ export async function signOutUser() {
 }
 
 // Sign up user
-export async function signUpUser(prevState: string, formData: FormData) {
+export async function signUpUser(prevState: unknown, formData: FormData) {
   let msg;
   try {
     const user = signUpSchema.parse({
