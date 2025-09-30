@@ -11,9 +11,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { middleware as auth } from "@/middleware";
+// import { middleware as auth } from "@/middleware";
 import { APP_NAME } from "@/lib/constants";
 import CredentialsSignInForm from "@/app/(auth)/sign-in/credentials-signin-form";
+import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Sign in",
@@ -25,7 +26,6 @@ const SignInPage = async (props: {
   const { callbackUrl } = await props.searchParams;
 
   const session = await auth();
-  // console.log("session: ", session);
 
   if (session) {
     return redirect(callbackUrl || "/");

@@ -1,5 +1,6 @@
 import { signOutUser } from "@/lib/actions/user.actions";
-import { middleware as auth } from "@/middleware";
+// import { middleware as auth } from "@/middleware";
+import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";

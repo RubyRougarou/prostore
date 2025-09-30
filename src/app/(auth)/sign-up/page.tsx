@@ -11,9 +11,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { middleware as auth } from "@/middleware";
+// import { middleware as auth } from "@/middleware";
 import { APP_NAME } from "@/lib/constants";
 import SignUpForm from "@/app/(auth)/sign-up/sign-up-form";
+import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Sign up",

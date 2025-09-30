@@ -42,7 +42,6 @@ const AddToCart = ({ item }: { item: CartItem }) => {
         </div>,
         {
           className: "!p-2 sm:!w-96 dark:!bg-zinc-900",
-          duration: 60000,
         },
       );
 
