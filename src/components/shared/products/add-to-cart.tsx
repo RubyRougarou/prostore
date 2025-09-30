@@ -15,8 +15,8 @@ const AddToCart = ({ item }: { item: CartItem }) => {
   const handleAddToCart = async () => {
     const res = await addItemToCart(item);
 
-    if (!res.success) {
-      toast.error(res.message, {
+    if (res?.success) {
+      toast.error(res?.message, {
         description: "please try again",
       });
     } else {
@@ -24,7 +24,7 @@ const AddToCart = ({ item }: { item: CartItem }) => {
         <div className={"flex items-center justify-between gap-7"}>
           <div>
             <h2 className={"text-ruby text-lg flex items-center gap-2 pl-2"}>
-              <ShoppingCart /> {res.message}
+              <ShoppingCart /> {res?.message}
             </h2>
             <p className={"text-muted-foreground pl-1"}>
               {item.name} added to cart
